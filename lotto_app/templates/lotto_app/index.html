@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ title }}</title>
+</head>
+<body>
+  <h1>로또 웹사이트</h1>
+  <p>여기에서 로또를 구매하고 당첨 여부를 확인할 수 있습니다.</p>
+
+  <h2>메뉴</h2>
+  <ul>
+    <li><a href="{% url 'lotto_app:buy_ticket' %}">로또 구매 (수동/자동)</a></li>
+    <li><a href="{% url 'lotto_app:my_tickets' %}">최근 구매 티켓 보기</a></li>
+    <li><a href="{% url 'lotto_app:check_result' %}">당첨 결과 확인</a></li>
+    <li><a href="{% url 'lotto_app:admin_round_list' %}">관리자용: 회차 관리/당첨자 확인</a> (staff 전용)</li>
+  </ul>
+</body>
+</html>
+

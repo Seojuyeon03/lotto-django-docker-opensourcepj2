@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>로또 관리자 - 회차 목록</title>
+</head>
+<body>
+  <h1>로또 관리자 - 회차 목록</h1>
+
+  <p>
+    <a href="{% url 'lotto_app:index' %}">메인으로</a> |
+    <a href="/admin/">Django Admin</a>
+  </p>
+
+  {% if rounds %}
+    <table border="1" cellpadding="5">
+      <thead>
+        <tr>
+          <th>회차</th>
+          <th>추첨 여부</th>
+          <th>추첨일</th>
+          <th>상세</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in rounds %}
+          <tr>
+            <td>{{ r.round_no }}회</td>
+            <td>{% if r.is_drawn %}이미 추첨{% else %}미추첨{% endif %}</td>
+            <td>{{ r.draw_date }}</td>
+            <td>
+              <a href="{% url 'lotto_app:admin_round_detail' r.round_no %}">
+                상세 보기
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>등록된 회차가 없습니다. /admin에서 회차를 먼저 추가해 주세요.</p>
+  {% endif %}
+</body>
+</html>

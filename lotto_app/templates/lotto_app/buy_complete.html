@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>구매 완료</title>
+</head>
+<body>
+  <h1>로또 구매 완료</h1>
+
+  <p>{{ round.round_no }}회 로또 구매가 완료되었습니다.</p>
+
+  <p>
+    구매자: {{ ticket.buyer_name|default:"(익명)" }}<br>
+    자동 여부: {{ ticket.is_auto|yesno:"자동,수동" }}<br>
+    구매 시간: {{ ticket.created_at }}
+  </p>
+
+  <p>
+    선택한 번호:
+    {{ numbers.0 }},
+    {{ numbers.1 }},
+    {{ numbers.2 }},
+    {{ numbers.3 }},
+    {{ numbers.4 }},
+    {{ numbers.5 }}
+  </p>
+
+  <p>
+    <a href="{% url 'lotto_app:buy_ticket' %}">다시 구매하기</a> |
+    <a href="{% url 'lotto_app:my_tickets' %}">내 티켓 보기</a> |
+    <a href="{% url 'lotto_app:index' %}">메인으로</a>
+  </p>
+</body>
+</html>

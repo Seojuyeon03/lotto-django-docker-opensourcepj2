@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>내 티켓 목록</title>
+</head>
+<body>
+  <h1>최근 구매된 로또 티켓</h1>
+
+  <p>
+    <a href="{% url 'lotto_app:index' %}">메인으로</a> |
+    <a href="{% url 'lotto_app:buy_ticket' %}">로또 구매하기</a>
+  </p>
+
+  {% if tickets %}
+    <table border="1" cellpadding="5">
+      <thead>
+        <tr>
+          <th>회차</th>
+          <th>구매자</th>
+          <th>자동 여부</th>
+          <th>번호</th>
+          <th>구매 시간</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for t in tickets %}
+          <tr>
+            <td>{{ t.round.round_no }}회</td>
+            <td>{{ t.buyer_name|default:"(익명)" }}</td>
+            <td>{{ t.is_auto|yesno:"자동,수동" }}</td>
+            <td>
+              {{ t.n1 }}, {{ t.n2 }}, {{ t.n3 }}, {{ t.n4 }}, {{ t.n5 }}, {{ t.n6 }}
+            </td>
+            <td>{{ t.created_at }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>아직 구매된 티켓이 없습니다.</p>
+  {% endif %}
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>로또 구매</title>
+</head>
+<body>
+  <h1>로또 구매</h1>
+
+  <p>
+    <a href="{% url 'lotto_app:index' %}">메인으로</a> |
+    <a href="{% url 'lotto_app:my_tickets' %}">내 티켓 보기</a>
+  </p>
+
+  {% if error %}
+    <p style="color:red;">{{ error }}</p>
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+
+    <div>
+      <label>이름(선택): </label>
+      <input type="text" name="buyer_name" placeholder="이름을 입력하세요 (선택)">
+    </div>
+
+    <div>
+      <p>구매 방식 선택:</p>
+      <label>
+        <input type="radio" name="mode" value="auto" checked>
+        자동
+      </label>
+      <label>
+        <input type="radio" name="mode" value="manual">
+        수동
+      </label>
+    </div>
+
+    <div>
+      <p>수동 선택 시 번호 입력 (1~45, 서로 다른 6개):</p>
+      <input type="number" name="n1" min="1" max="45">
+      <input type="number" name="n2" min="1" max="45">
+      <input type="number" name="n3" min="1" max="45">
+      <input type="number" name="n4" min="1" max="45">
+      <input type="number" name="n5" min="1" max="45">
+      <input type="number" name="n6" min="1" max="45">
+    </div>
+
+    <div style="margin-top: 10px;">
+      <button type="submit">구매하기</button>
+    </div>
+  </form>
+</body>
+</html>
